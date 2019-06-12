@@ -10,7 +10,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Blog</title>
+	<title>FoK - Войти</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="{% static 'blog/bootstrap.min.css' %}" rel="stylesheet">
@@ -36,12 +36,12 @@
 									{{ form|crispy }}
 								</fieldset>
 								<div class="form-group">
-									<button class="btn bg-blue text-white btn-block" type="submit">Login</button>
+									<button class="btn bg-blue text-white btn-block" type="submit">Войти</button>
 								</div>
 							</form>
 							<div class="border-top pt-3 text-center">
 								<small class="text-muted">
-									Create new account <a class="ml-2" href="{% url 'sign_up' %}">Sign up</a>
+									Еще нет аккаунта? <a class="ml-2" href="{% url 'sign_up' %}">Зарегистрироваться</a>
 								</small>
 							</div>
 						</div>
