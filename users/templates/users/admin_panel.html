@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	<h1 class="my-4">Users
+				<!-- <small>newest first</small> -->
+	</h1>
+	{% for user_ in users %}
+		<div class="card">
+			<div class="card-body row">
+				<div class="col-5 text-left">
+					<a class="text-info" href="{% url 'user-detail' user_.profile.id %}"><img class="preview-image img-thumbnail rounded-circle mr-1" src="{{ user_.profile.image.url }}"><h4 class="card-title mt-1">{{ user_.username }}</h4></a>
+				</div>
+				<div class="col text-left">
+				</div>
+				<div class="col-5 text-right">
+					<!-- <a class="btn btn-dark" href="#">Update</a> -->
+					<a class="btn btn-danger" href="{% url 'user-delete' user_.id %}">Delete</a>
+				</div>
+			</div>
+			<div class="card-body row">
+				<div class="col-5">
+					{{ user_.email }}
+				</div>
+				<div class="col-5">
+					{{ user_.profile.access }}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock content %}
+
+				

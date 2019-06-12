@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	<h1 class="my-4">Post №{{ object.id }}</h1>
+	<div class="card mb-4">
+		<div class="card-body">
+			<h2 class="card-title">{{ object.title }}</h2>
+			<p class="card-text">{{ object.content }}</p>
+			<!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
+		</div>
+		<div class="card-footer text-muted row">
+			<div class="col">
+				{{ object.date|date:"F d, Y" }}
+			</div>
+			<div class="col float-right text-right">
+				<a href="{% url 'user-detail' object.author.profile.id %}" class="text-info">{{ object.author }}</a>
+				<img class="preview-image img-thumbnail rounded-circle" src="{{ object.author.profile.image.url }}">
+			</div>
+		</div>
+	</div>
+	{% if object.author == user or not user.profile.access == 'standart' %}
+	<div class="text-center">
+		<a class="btn btn-dark" href="{% url 'post-update' object.id %}">Update</a>
+		<a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Delete</a>
+	</div>
+	{% endif %}
+{% endblock content %}
+
+				
