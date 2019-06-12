@@ -11,15 +11,18 @@ from .models import Profile
 
 def sign_up(request):
 	if request.method == 'POST':
-		form = UserRegisterForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
+		uform = UserRegisterForm(request.POST)
+		pform = ProfileUpdateForm(request.POST, request.FILES)
+		if uform.is_valid() and pform.is_valid():
+			uform.save()
+			username = uform.cleaned_data.get('username')
+			pform.save()
 			messages.success(request, f'Account created for {username}')
 			return redirect('login')
 	else:
-		form = UserRegisterForm()
-	return render(request, 'users/signup.html', {'form': form})
+		uform = UserRegisterForm()
+		pform = ProfileUpdateForm()
+	return render(request, 'users/signup.html', {'uform': uform, 'pform': pform})
 
 @login_required
 def profile(request):

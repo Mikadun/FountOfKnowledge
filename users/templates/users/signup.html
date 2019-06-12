@@ -33,7 +33,8 @@
 							<form method="POST" class="card-text">
 								{% csrf_token %}
 								<fieldset class="form-group">
-									{{ form|crispy }}
+									{{ uform|crispy }}
+									{{ pform|crispy }}
 								</fieldset>
 								<div class="form-group">
 									<button class="btn bg-blue text-white btn-block" type="submit">Зарегистрироваться</button>

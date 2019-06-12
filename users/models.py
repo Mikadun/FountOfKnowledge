@@ -3,8 +3,18 @@ from django.contrib.auth.models import User
 from PIL import Image
 
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	image = models.ImageField(default='default.png', upload_to='profile_pics')
+	position = models.CharField(
+		choices = [('Студент', 'Студент'),
+			('Преподаватель', 'Преподаватель'),
+			('Ученый', 'Ученый'),
+			('Другая', 'Другая')
+		],
+		default = 'Другая',
+		max_length = 20
+	)
+
 	access = models.CharField(
 		choices = [('standart', 'standart'),
 			('moderator', 'moderator'),
