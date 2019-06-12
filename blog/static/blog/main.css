@@ -1,78 +1,74 @@
-@font-face 
-{
-	font-family: Roboto-Bold;
-	src: url(fonts/Roboto/RobotoCondensed-Bold.ttf);
+@font-face {
+    font-family: Roboto-Bold;
+    src: url(fonts/Roboto/RobotoCondensed-Bold.ttf);
 }
 
-@font-face 
-{
-	font-family: Roboto-BoldItalic;
-	src: url(fonts/Roboto/RobotoCondensed-BoldItalic.ttf);
+@font-face {
+    font-family: Roboto-BoldItalic;
+    src: url(fonts/Roboto/RobotoCondensed-BoldItalic.ttf);
 }
 
-@font-face 
-{
-	font-family: Roboto-Italic;
-	src: url(fonts/Roboto/RobotoCondensed-Italic.ttf);
+@font-face {
+    font-family: Roboto-Italic;
+    src: url(fonts/Roboto/RobotoCondensed-Italic.ttf);
 }
 
-@font-face 
-{
-	font-family: Roboto-Light;
-	src: url(fonts/Roboto/RobotoCondensed-Light.ttf);
+@font-face {
+    font-family: Roboto-Light;
+    src: url(fonts/Roboto/RobotoCondensed-Light.ttf);
 }
 
-@font-face 
-{
-	font-family: Roboto-Regular;
-	src: url(fonts/Roboto/RobotoCondensed-Regular.ttf);
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(fonts/Roboto/RobotoCondensed-Regular.ttf);
 }
 
-@font-face 
-{
-	font-family: PoiretOne-Regular;
-	src: url(fonts/Logo/PoiretOne/PoiretOne-Regular.ttf);
+@font-face {
+    font-family: PoiretOne-Regular;
+    src: url(fonts/Logo/PoiretOne/PoiretOne-Regular.ttf);
 }
 
 body {
-  padding-top: 56px;
+    padding-top: 56px;
 }
 
 * {
-	font-family: Roboto-Regular;
-	font-size: 12pt;
-	border-radius: 0 !important;
+    font-family: Roboto-Regular;
+    font-size: 12pt;
+    border-radius: 0 !important;
 }
 
 .profile-image-container {
-	max-height: 125px;
-	max-width: 125px;
-	margin-right: 20px;
-	margin-bottom: 20px;
+    max-height: 125px;
+    max-width: 125px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .preview-image {
-	max-width: 60px;
-	margin-top: -8px;
-	margin-bottom: -8px;
-	margin-left: -5px;
-	height: auto;
+    max-width: 60px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+    margin-left: -5px;
+    height: auto;
 }
 
 .bg-blue {
-	background-color: #3B378C;
+    background-color: #3B378C;
 }
 
 .logo {
-	font-family: PoiretOne-Regular;
-	font-weight: bold;
+    font-family: PoiretOne-Regular;
 }
 
 .bg-triangle {
-	background-image: url(bg_line.png);
-	background-position: center center;
+    background-image: url(bg_line.png);
+    background-position: center center;
+}
+/*
+.card {
+    border-color: #2c393f;
+    border-width: 0.3px;
 }
 
-.card {
-	border-color: #3B378C;
-}
+ */
