@@ -1,27 +1,26 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from .forms import FilterForm
+from .forms import FilterForm, CommentForm
 
 def home(request):
-	author_name = ''
+	post_title = ''
 	if request.method == 'POST':
 		filter_form = FilterForm(request.POST)
 		if filter_form.is_valid():
-			author_name = filter_form.cleaned_data.get('author')
-			author = User.objects.filter(username__contains=author_name).first()
-			posts = Post.objects.filter(author__exact=author)
+			post_title = filter_form.cleaned_data.get('author')
+			posts = Post.objects.filter(title__contains=post_title)
 	else:
 		filter_form = FilterForm()
 		posts = Post.objects.all()
 		author = None
-	if author_name.strip() == '':
+	if post_title.strip() == '':
 		filter_form = FilterForm()
 		posts = Post.objects.all()
 		author = None
-	return render(request, 'blog/home.html', {'posts': posts, 'filter': {'form': filter_form, 'author': author}})
+	return render(request, 'blog/home.html', {'posts': posts, 'filter': {'form': filter_form}})
 
 class PostListView(ListView):
 	model = Post
@@ -29,8 +28,17 @@ class PostListView(ListView):
 	context_object_name = 'posts'
 	ordering = ['-date']
 
-class PostDetailView(DetailView):
-	model = Post
+def post_detail(request, pk=None):
+	post = Post.objects.get(id__exact=pk)
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			form.save(request.user, post)
+	else:
+		form = CommentForm()
+	return render(request, 'blog/post_detail.html', {
+		'object': post, 'form': form, 'comments': post.comment_set.all()
+	})
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})

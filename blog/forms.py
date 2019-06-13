@@ -12,3 +12,20 @@ class FilterForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_id = 'id-filterForm'
         self.helper.form_class = 'form-inline'
+
+class CommentForm(forms.ModelForm):
+	class Meta:
+		model = Comment
+		fields = ['content']
+
+	def form_valid(self, form, post):
+		form.instance.author = self.request.user
+		form.instance.post = post
+		return super().form_valid(form)
+
+	def save(self, author, post):
+		comment = super(CommentForm, self).save(commit=False)
+		comment.author = author
+		comment.post = post
+		comment.save()
+		return comment
