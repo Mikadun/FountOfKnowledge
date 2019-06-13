@@ -87,6 +87,11 @@ footer {
     color: #6a6ebe;
 }
 
+.card .badge {
+    font-family: Roboto-Light;
+}
+
+
 .card .badge-primary {
     background-color: #3B378C;
 }
