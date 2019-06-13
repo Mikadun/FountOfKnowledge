@@ -86,3 +86,7 @@ footer {
 .card a:visited {
     color: #6a6ebe;
 }
+
+.card .badge-primary {
+    background-color: #3B378C;
+}
