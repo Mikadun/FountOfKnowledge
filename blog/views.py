@@ -36,6 +36,7 @@ def post_detail(request, pk=None):
 		form = CommentForm(request.POST)
 		if form.is_valid():
 			form.save(request.user, post)
+			return redirect('post-detail', pk)
 	else:
 		form = CommentForm()
 	return render(request, 'blog/post_detail.html', {
