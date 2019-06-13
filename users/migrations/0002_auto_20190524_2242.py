@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('users', '0001_initial'),
     ]
@@ -13,7 +12,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profile',
             name='access',
-            field=models.CharField(choices=[('standart', 'standart'), ('moderator', 'moderator'), ('admin', 'admin')], default='standart', max_length=20),
+            field=models.CharField(choices=[('standart', 'standart'), ('moderator', 'moderator'), ('admin', 'admin')],
+                                   default='standart', max_length=20),
         ),
         migrations.AlterField(
             model_name='profile',

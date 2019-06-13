@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .forms import FilterForm, CommentForm
 from users.models import Profile
 
+
 def home(request):
 	post_title = ''
 	if request.method == 'POST':
@@ -23,11 +24,13 @@ def home(request):
 		author = None
 	return render(request, 'blog/home.html', {'posts': posts, 'filter': {'form': filter_form}})
 
+
 class PostListView(ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date']
+
 
 def view_posts(request, pk):
 	author = Profile.objects.get(pk__exact=pk).user
@@ -48,8 +51,10 @@ def post_detail(request, pk=None):
 		'object': post, 'form': form, 'comments': post.comment_set.all()
 	})
 
+
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
@@ -58,6 +63,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
+
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
@@ -73,6 +79,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 			return True
 		return False
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Post
 	success_url = '/'
@@ -82,4 +89,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == post.author or not self.request.user.profile.access == 'standart':
 			return True
 		return False
-

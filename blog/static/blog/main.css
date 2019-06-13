@@ -75,14 +75,23 @@ footer {
     background-color: #8C8068;
 }
 
-a:link, a:visited {
-    color: #6E6ABE;
-}
-
 .btn-dark {
     background-color: #08090D;
 }
 
-.filterform {
+.card a {
+    color: #3B378C;
+}
 
+.card a:visited {
+    color: #6a6ebe;
+}
+
+.card .badge {
+    font-family: Roboto-Light;
+}
+
+
+.card .badge-primary {
+    background-color: #3B378C;
 }
