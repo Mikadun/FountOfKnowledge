@@ -1,11 +1,11 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-	<h2>You have been logged out</h2>
+	<h2>Вы вышли из системы</h2>
 	<div class="border-top pt-3">
 		<small class="text-muted">
-			You can back
-			<a class="ml-1 mr-1" href="{% url 'blog-home' %}">Home</a> 
-			or <a class="ml-1 mr-1" href="{% url 'login' %}">Log in</a> again
+			Вы можете вернуться
+			<a class="ml-1 mr-1" href="{% url 'blog-home' %}">Домой</a> 
+			or <a class="ml-1 mr-1" href="{% url 'login' %}">Войти</a> снова
 		</small>
 	</div>
 {% endblock content %}
