@@ -7,6 +7,7 @@
             Статьи {{ filter.author.first_name }} {{ filter.author.second_name }}
         </h1>
     {% endif %}
+
     {% for post in posts %}
         <div class="card mb-4 shadow-lg pb-1">
             <div class="card-body">
@@ -19,7 +20,7 @@
                 <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
             </div>
             <!-- FIX IT -->
-            <div class="row card-footer bg-white mx-2">
+            <div class="row card-footer bg-white ml-1 mr-1 pl-0 pr-0">
                 <div class="col text-left">
                     <a href="{% url 'user-detail' post.author.profile.id %}">
                         {{ post.author.first_name }} {{ post.author.last_name }}</a>
