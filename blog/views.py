@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -31,9 +31,12 @@ class PostListView(ListView):
 def post_detail(request, pk=None):
 	post = Post.objects.get(id__exact=pk)
 	if request.method == 'POST':
+		if not request.user.is_authenticated:
+			return redirect('login')
 		form = CommentForm(request.POST)
 		if form.is_valid():
 			form.save(request.user, post)
+			return redirect('post-detail', pk)
 	else:
 		form = CommentForm()
 	return render(request, 'blog/post_detail.html', {

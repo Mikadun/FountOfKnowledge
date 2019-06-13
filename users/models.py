@@ -16,9 +16,9 @@ class Profile(models.Model):
 	)
 
 	access = models.CharField(
-		choices = [('standart', 'standart'),
-			('moderator', 'moderator'),
-			('admin', 'admin')
+		choices = [('Пользователь', 'Пользователь'),
+			('Модератор', 'Модератор'),
+			('Администратор', 'Администратор')
 		],
 		default = 'standart',
 		max_length = 20

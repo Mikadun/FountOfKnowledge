@@ -6,21 +6,11 @@
 				<img class="img-thumbnail profile-image" src="{{ object.image.url }}" alt="Profile picture">
 			</div>
 			<div class="media-body">
-				<h2 class="card-title">{{ object.user.username }} profile</h2>
-				<p class="card-text">Something will be here</p>
+				<h2 class="card-title">{{ object.user.first_name }} {{ object.user.last_name }}</h2>
+				<h4 class="card-text">{{ object.position }} {{ object.access }}</h4>
 			</div>
 		</div>
 		<div class="content">
-			<h4>
-			Member status:
-			{% if object.access == 'admin' %}
-				<p class="text-danger">Admin</p>
-			{% elif object.access == 'moderator' %}
-				<p class="text-info">Moderator</p>
-			{% else %}
-				<p class="text-muted">User</p>
-			{% endif %}
-			</h4>
 		</div>
 		<div class="text-center">
 			<!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
