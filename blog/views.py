@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from .forms import FilterForm
+from .forms import FilterForm, CommentForm
 
 def home(request):
 	post_title = ''
@@ -28,8 +28,17 @@ class PostListView(ListView):
 	context_object_name = 'posts'
 	ordering = ['-date']
 
-class PostDetailView(DetailView):
-	model = Post
+def post_detail(request, pk=None):
+	post = Post.objects.get(id__exact=pk)
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			form.save(request.user, post)
+	else:
+		form = CommentForm()
+	return render(request, 'blog/post_detail.html', {
+		'object': post, 'form': form, 'comments': post.comment_set.all()
+	})
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})
