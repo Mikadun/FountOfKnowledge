@@ -27,7 +27,7 @@
 				</div>
 				<div class="col float-right text-right">
 					<a href="{% url 'user-detail' object.author.profile.id %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>
-					<img class="preview-image img-thumbnail rounded-circle" src="{{ object.author.profile.image.url }}">
+					<img class="preview-image img-thumbnail rounded-circle" src="{{ comment.author.profile.image.url }}">
 				</div>
 			</div>
 			<div class="card-body">
@@ -37,7 +37,7 @@
 		</div>
 	{% endfor %}
 
-	{% if user %}
+	{% if user.is_authenticated %}
 		<div class="card mb-4 shadow-lg">
 			<form method="POST">
 				{% csrf_token %}
@@ -48,14 +48,15 @@
 				</div>
 			</form>
 		</div>
+
+		{% if object.author == user or not user.profile.access == 'standart' %}
+		<div class="text-center">
+			<a class="btn btn-dark text-white" href="{% url 'post-update' object.id %}">Update</a>
+			<a class="btn btn-danger text-white" href="{% url 'post-delete' object.id %}">Delete</a>
+		</div>
+		{% endif %}
 	{% endif %}
 
-	{% if object.author == user or not user.profile.access == 'standart' %}
-	<div class="text-center">
-		<a class="btn btn-dark text-white" href="{% url 'post-update' object.id %}">Update</a>
-		<a class="btn btn-danger text-white" href="{% url 'post-delete' object.id %}">Delete</a>
-	</div>
-	{% endif %}
 {% endblock content %}
 
 				
