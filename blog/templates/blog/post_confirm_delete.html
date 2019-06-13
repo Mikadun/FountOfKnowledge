@@ -4,12 +4,12 @@
 		<form method="POST" class="form-group">
 			{% csrf_token %}
 			<fieldset class="form-group">
-				<legend class="border-bottom mb-4">Delete Post</legend>
-				<h4 class="text-center">Are you sure you want to delete the post "{{ object.title }}"?</h4>
+				<legend class="border-bottom mb-4">Удалить пост</legend>
+				<h4 class="text-center">Вы уверены, что хотите удалить этот пост "{{ object.title }}"?</h4>
 			</fieldset>
 			<div class="form-group text-center">
-				<button class="btn btn-danger text-white" type="submit">Delete</button>
-				<a class="btn btn-dark text-white" href="{% url 'post-detail' object.id %}">Cancel</a>
+				<button class="btn btn-danger text-white" type="submit">Удалить</button>
+				<a class="btn btn-dark text-white" href="{% url 'post-detail' object.id %}">Отмена</a>
 			</div>
 		</form>
 	</div>

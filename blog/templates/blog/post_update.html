@@ -1,20 +1,22 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<div class="container">
-		<form method="POST">
-			{% csrf_token %}
-			<fieldset class="form-group">
-				<legend class="border-bottom mb-4">Update post</legend>
-				{{ form|crispy }}
-			</fieldset>
-			<div class="form-group">
-				<div class="text-center">
-					<button class="btn btn-dark" type="submit">Save</button>
-					<a class="btn btn-dark" href="{% url 'post-detail' object.id %}">Cancel</a>
-					<a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Delete</a>
+	<div class="card p-2 shadow-lg">
+		<div class="container">
+			<form method="POST">
+				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-4">Редактировать пост</legend>
+					{{ form|crispy }}
+				</fieldset>
+				<div class="form-group">
+					<div class="text-center">
+						<button class="btn btn-dark" type="submit">Сохранить</button>
+						<a class="btn btn-dark" href="{% url 'post-detail' object.id %}">Отмена</a>
+						<a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Удалить</a>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 {% endblock content %}
