@@ -65,10 +65,20 @@ body {
     background-image: url(bg_line.png);
     background-position: center center;
 }
-/*
+
 .card {
-    border-color: #2c393f;
+    border-color: #3B378C;
     border-width: 0.3px;
 }
 
- */
+footer {
+    background-color: #8C8068;
+}
+
+a:link, a:visited {
+    color: #6E6ABE;
+}
+
+.btn-dark {
+    background-color: #08090D;
+}
