@@ -1,10 +1,11 @@
 from django import forms
+from .models import Comment
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout
 
 
 class FilterForm(forms.Form):
-    author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Author name'}), label='', max_length=100,
+    author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Введите текст'}), label='', max_length=100,
                              required=False)
 
     def __init__(self, *args, **kwargs):

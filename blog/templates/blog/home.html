@@ -46,8 +46,8 @@
 
 {% block sidebar %}
         <!-- Filter Widget -->
-        <div class="card shadow-lg">
-            <h5 class="card-header">Filter</h5>
+        <div class="card shadow-lg mb-auto">
+            <h5 class="card-header">Поиск</h5>
             <div class="card-body">
                 <form method="POST">
                     {% csrf_token %}
@@ -57,7 +57,7 @@
                         -->
                         {% crispy filter.form %}
                         <div class="input-group-btn">
-                            <button class="btn btn-secondary mb-2" type="submit">Apply</button>
+                            <button class="btn btn-secondary mb-2" type="submit">Искать</button>
                         </div>
                         <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
                     </div>
