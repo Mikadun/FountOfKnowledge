@@ -31,6 +31,7 @@
 		</div>
 	{% endfor %}
 
+	<!--
 	<ul class="pagination justify-content-center mb-4">
 		<li class="page-item">
 			<a class="page-link" href="#">&larr; Older</a>
@@ -39,12 +40,13 @@
 			<a class="page-link" href="#">Newer &rarr;</a>
 		</li>
 	</ul>
+	-->
 {% endblock content %}
 
 {% block sidebar %}
 	<div class="col-md-4">
 
-		<!-- Search Widget -->
+		<!-- Search Widget --
 		<div class="card shadow-lg">
 			<h5 class="card-header">Search</h5>
 			<div class="card-body">
@@ -56,10 +58,11 @@
 				</div>
 			</div>
 		</div>
+		-->
 
 		<!-- Filter Widget -->
-		<div class="card my-4 shadow-lg">
-			<h5 class="card-header">Filter</h5>
+		<div class="card shadow-lg">
+			<h5 class="card-header">Search</h5>
 			<div class="card-body">
 				<form method="POST">
 				{% csrf_token %}
@@ -69,18 +72,19 @@
 						-->
 						{{ filter.form }}
 						<span class="input-group-btn">
-							<button class="btn btn-secondary" type="submit">Apply</button>
+							<button class="btn btn-secondary" type="submit">Go</button>
 						</span>
 					</div>
 				</form>
 			</div>
 		</div>
 
-		<!-- Categories Widget -->
+		<!-- Categories Widget
 		<div class="card my-4 shadow-lg">
 			<h5 class="card-header">Categories</h5>
 			<div class="card-body">
 			</div>
 		</div>
+		-->
 	</div>
 {% endblock %}
