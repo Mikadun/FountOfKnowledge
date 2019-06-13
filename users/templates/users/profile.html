@@ -1,27 +1,27 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<div class="container mt-2">
-		<div class="media mb-2">
-			<div class="profile-image-container">
-				<img class="img-thumbnail profile-image" src="{{ user.profile.image.url }}" alt="Profile picture">
-			</div>
-			<div class="media-body">
-				<h2 class="card-title">{{ user.username }} profile</h2>
-				<p class="card-text">Something will be here</p>
-			</div>
-		</div>
-		<form method="POST" enctype="multipart/form-data">
-    		{% csrf_token %}
-    		<fieldset class="form-group">
-    			<legend class="border-bottom mb-4">Profile info</legend>
-    			{{ uform|crispy }}
-    			{{ pform|crispy }}
-    		</fieldset>
-    		<div class="form-group">
-    			<button class="btn btn-dark" type="submit">Update</button>
-    			<a class="btn btn-danger" href="{% url 'user-delete' user.id %}">Delete this account</a>
-    		</div>
-    	</form>
-	</div>
+    <div class="container mt-2">
+        <div class="media mb-2">
+            <div class="profile-image-container">
+                <img class="img-thumbnail profile-image" src="{{ user.profile.image.url }}" alt="Profile picture">
+            </div>
+            <div class="media-body">
+                <h2 class="card-title">{{ user.username }} profile</h2>
+                <p class="card-text">Something will be here</p>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile info</legend>
+                {{ uform|crispy }}
+                {{ pform|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-dark" type="submit">Update</button>
+                <a class="btn btn-danger" href="{% url 'user-delete' user.id %}">Delete this account</a>
+            </div>
+        </form>
+    </div>
 {% endblock content %}

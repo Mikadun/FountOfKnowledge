@@ -5,18 +5,18 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<title>Fount of Knowledge - Регистрация</title>
+    <title>Fount of Knowledge - Регистрация</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="{% static 'blog/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'blog/bootstrap.min.css' %}" rel="stylesheet">
 
-	<!-- Custom styles for this template -->
-	<link href="{% static 'blog/main.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'blog/main.css' %}" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'blog/images/icon.png' %}">
@@ -24,44 +24,45 @@
 </head>
 
 <body class="bg-triangle">
-	<div class="view">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
-					<div class="card mx-5">
-						<div class="card-header">
-							<h3 class="card-title text-center logo">FOUNTofKNOWLEDGE</h3>
-						</div>
-						<div class="card-body">
-							<form method="POST" class="card-text">
-								{% csrf_token %}
-								<fieldset class="form-group">
-									{{ uform|crispy }}
-									{{ pform|crispy }}
-								</fieldset>
-								<div class="form-group">
-									<button class="btn bg-blue text-white btn-block" type="submit">Зарегистрироваться</button>
-								</div>
-							</form>
-							<div class="border-top pt-3 text-center">
-								<small class="text-muted">
-									Уже есть аккаунт? <a class="ml-2" href="{% url 'login' %}">Войти</a>
-								</small>
-							</div>
-						</div>
-					</div>
+<div class="view">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card mx-5">
+                    <div class="card-header">
+                        <h3 class="card-title text-center logo">FOUNTofKNOWLEDGE</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" class="card-text">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ uform|crispy }}
+                                {{ pform|crispy }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn bg-blue text-white btn-block" type="submit">Зарегистрироваться
+                                </button>
+                            </div>
+                        </form>
+                        <div class="border-top pt-3 text-center">
+                            <small class="text-muted">
+                                Уже есть аккаунт? <a class="ml-2" href="{% url 'login' %}">Войти</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
 
-				</div>
-				<div class="col col-reg-right">
-				</div>
-			</div>
-		</div>
-	</div>
+            </div>
+            <div class="col col-reg-right">
+            </div>
+        </div>
+    </div>
+</div>
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="{% static 'blog/jquery.min.js' %}"></script>
-	<script src="{% static 'blog/bootstrap.bundle.min.js' %}"></script>
-	<script src="{% static 'blog/bootstrap.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'blog/jquery.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap.min.js' %}"></script>
 
 </body>
 

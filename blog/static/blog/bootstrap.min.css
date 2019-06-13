@@ -4523,7 +4523,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .card-title {
-    margin-bottom: .75rem
+    margin-bottom: .75rem;
 }
 
 .card-subtitle {

@@ -4,18 +4,18 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<title>Fount Of Knowledge</title>
+    <title>Fount Of Knowledge</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="{% static 'blog/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'blog/bootstrap.min.css' %}" rel="stylesheet">
 
-	<!-- Custom styles for this template -->
-	<link href="{% static 'blog/main.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'blog/main.css' %}" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'blog/images/icon.png' %}">
@@ -24,93 +24,97 @@
 
 <body>
 
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top shadow-lg">
-		<div class="container">
-			<!-- <a class="navbar-brand" href="{% url 'blog-home' %}"></a> -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link text-white" href="{% url 'blog-home' %}"><h4 class="logo">FOUNTofKNOWLADGE</h4></a>
-					</li>
-				</ul>
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link text-white" href="{% url 'blog-home' %}">Главная
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="{% url 'post-create' %}">Отправить статью</a>
-					</li>
-					{% if user.profile.access == 'admin' %}
-						<li class="nav-item">
-							<a class="nav-link text-white" href="{% url 'admin-panel' %}">Панель управления</a>
-						</li>
-					{% endif %}
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					{% if user.is_authenticated %}
-						<li class="nav-item">
-							<a class="nav-link text-white" href="{% url 'profile' %}">{{ user.username }}</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white" href="{% url 'logout' %}">Выход</a>
-						</li>
-					{% else %}
-						<li class="nav-item">
-							<a class="nav-link text-white" href="{% url 'login' %}">Войти</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white" href="{% url 'sign_up' %}">Зарегистрироваться</a>
-						</li>
-					{% endif %}
-				</ul>
-			</div>
-		</div>
-	</nav>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top shadow-lg">
+    <div class="container">
+        <!-- <a class="navbar-brand" href="{% url 'blog-home' %}"></a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'blog-home' %}"><h4 class="logo">FOUNTofKNOWLADGE</h4>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'blog-home' %}">Главная
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'post-create' %}">Отправить статью</a>
+                </li>
+                {% if user.profile.access == 'admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'admin-panel' %}">Панель управления</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'profile' %}">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'logout' %}">Выход</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'login' %}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'sign_up' %}">Зарегистрироваться</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
-	<!-- Page Content -->
-	<div class="container mt-4">
+<!-- Page Content -->
+<div class="container mt-4">
 
-		<div class="row">
+    <div class="row">
 
-			<!-- Blog Entries Column -->
-			<div class="col-md mb-4">
-				{% if messages %}
-					{% for message in messages %}
-						<div class="alert alert-{{ message.tags }}">
-							{{ message }}
-						</div>
-					{% endfor %}
-				{% endif %}
-				{% block content %}{% endblock %}
-			</div>
+        <!-- Blog Entries Column -->
+        <div class="col-md mb-4">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+        </div>
 
-			<!-- Sidebar Widgets Column -->
-			{% block sidebar %}{% endblock %}
+        <!-- Sidebar Widgets Column -->
+        {% block sidebar %}{% endblock %}
 
-		</div>
-		<!-- /.row -->
+    </div>
+    <!-- /.row -->
 
-	</div>
-	<!-- /.container -->
+</div>
+<!-- /.container -->
 
-	<!-- Footer -->
-	<footer class="fixed-bottom">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2019. Read <a class="text-info" href="{% url 'blog-about' %}">about</a></p>
-			
-		</div>
-		<!-- /.container -->
-	</footer>
+<!-- Footer -->
+<footer class="fixed-bottom">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019. Read <a class="text-info"
+                                                                                          href="{% url 'blog-about' %}">about</a>
+        </p>
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="{% static 'blog/jquery.min.js' %}"></script>
-	<script src="{% static 'blog/bootstrap.bundle.min.js' %}"></script>
-	<script src="{% static 'blog/bootstrap.min.js' %}"></script>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'blog/jquery.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap.min.js' %}"></script>
 
 </body>
 

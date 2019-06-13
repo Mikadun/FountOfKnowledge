@@ -1,30 +1,30 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-	<div class="container mt-2">
-		<div class="media mb-2">
-			<div class="profile-image-container">
-				<img class="img-thumbnail profile-image" src="{{ object.image.url }}" alt="Profile picture">
-			</div>
-			<div class="media-body">
-				<h2 class="card-title">{{ object.user.username }} profile</h2>
-				<p class="card-text">Something will be here</p>
-			</div>
-		</div>
-		<div class="content">
-			<h4>
-			Member status:
-			{% if object.access == 'admin' %}
-				<p class="text-danger">Admin</p>
-			{% elif object.access == 'moderator' %}
-				<p class="text-info">Moderator</p>
-			{% else %}
-				<p class="text-muted">User</p>
-			{% endif %}
-			</h4>
-		</div>
-		<div class="text-center">
-			<!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
-			<a class="btn btn-danger" href="{% url 'user-delete' object.user.id %}">Delete this account</a>
-		</div>
-	</div>
+    <div class="container mt-2">
+        <div class="media mb-2">
+            <div class="profile-image-container">
+                <img class="img-thumbnail profile-image" src="{{ object.image.url }}" alt="Profile picture">
+            </div>
+            <div class="media-body">
+                <h2 class="card-title">{{ object.user.username }} profile</h2>
+                <p class="card-text">Something will be here</p>
+            </div>
+        </div>
+        <div class="content">
+            <h4>
+                Member status:
+                {% if object.access == 'admin' %}
+                    <p class="text-danger">Admin</p>
+                {% elif object.access == 'moderator' %}
+                    <p class="text-info">Moderator</p>
+                {% else %}
+                    <p class="text-muted">User</p>
+                {% endif %}
+            </h4>
+        </div>
+        <div class="text-center">
+            <!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
+            <a class="btn btn-danger" href="{% url 'user-delete' object.user.id %}">Delete this account</a>
+        </div>
+    </div>
 {% endblock content %}
