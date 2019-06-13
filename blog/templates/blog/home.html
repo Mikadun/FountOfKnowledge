@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
+{% crispy filter_form filter_form.helper %}
 {% block content %}
 	{% if not filter.author == None %}
 		<h1 class="my-4">
@@ -44,7 +45,25 @@
 {% endblock content %}
 
 {% block sidebar %}
-	<div class="col-md-4">
+        <!-- Filter Widget -->
+        <div class="card shadow-lg">
+            <h5 class="card-header">Filter</h5>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <!--
+                        <input type="text" class="form-control" placeholder="Author name...">
+                        -->
+                        {% crispy filter.form %}
+                        <div class="input-group-btn">
+                            <button class="btn btn-secondary mb-2" type="submit">Apply</button>
+                        </div>
+                        <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
+                    </div>
+                </form>
+            </div>
+        </div>
 
 		<!-- Search Widget --
 		<div class="card shadow-lg">
@@ -61,24 +80,6 @@
 		-->
 
 		<!-- Filter Widget -->
-		<div class="card shadow-lg">
-			<h5 class="card-header">Search</h5>
-			<div class="card-body">
-				<form method="POST">
-				{% csrf_token %}
-					<div class="input-group">
-						<!--
-						<input type="text" class="form-control" placeholder="Author name...">
-						-->
-						{{ filter.form }}
-						<span class="input-group-btn">
-							<button class="btn btn-secondary" type="submit">Go</button>
-						</span>
-					</div>
-				</form>
-			</div>
-		</div>
-
 		<!-- Categories Widget
 		<div class="card my-4 shadow-lg">
 			<h5 class="card-header">Categories</h5>
@@ -86,5 +87,4 @@
 			</div>
 		</div>
 		-->
-	</div>
 {% endblock %}
