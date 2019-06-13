@@ -24,15 +24,6 @@
             </div>
         </div>
     </div>
-    <!-- Post section -->
-    {% for comment in comments %}
-        <div class="container shadow-lg comment p-0">
-            <div class="mb-3 card">
-                <div class="card-body">
-                    <div class="container pl-0">
-                        <img class="mb-2 preview-image img-thumbnail rounded-circle"
-                             src="{{ object.author.profile.image.url }}">
-                        <a href="{% url 'user-detail' object.author.profile.id %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>
 
 	{% for comment in comments %}
         <div class="container shadow-lg comment p-0">
@@ -40,8 +31,8 @@
                 <div class="card-body">
                     <div class="container pl-0">
                         <img class="mb-2 preview-image img-thumbnail rounded-circle"
-                             src="{{ object.author.profile.image.url }}">
-                        <a href="{% url 'user-detail' object.author.profile.id %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>
+                             src="{{ сomment.author.profile.image.url }}">
+                        <a href="{% url 'user-detail' comment.author.profile.id %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>
 
                     </div>
                     <div class="container mb-2">
