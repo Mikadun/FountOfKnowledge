@@ -4,6 +4,7 @@ from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from .forms import FilterForm, CommentForm
+from users.models import Profile
 
 def home(request):
 	post_title = ''
@@ -27,6 +28,10 @@ class PostListView(ListView):
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date']
+
+def view_posts(request, pk):
+	author = Profile.objects.get(pk__exact=pk).user
+	return render(request, 'blog/home.html', {'objects': author.post_set.all()})
 
 def post_detail(request, pk=None):
 	post = Post.objects.get(id__exact=pk)
