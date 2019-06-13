@@ -3,13 +3,13 @@
 {% block content %}
 	{% if not filter.author == None %}
 		<h1 class="my-4">
-			Posts by {{ filter.author.username }}
+			Статьи {{ filter.author.first_name }} {{ filter.author.second_name }}
 		</h1>
 	{% endif %}
 	{% for post in posts %}
-		<div class="card mb-4">
+		<div class="card mb-4 shadow-lg">
 			<div class="card-body">
-				<a class="text-dark card-title" href="{% url 'post-detail' post.id %}">
+				<a class="card-title" href="{% url 'post-detail' post.id %}">
 					<h2>
 					{{ post.title }}
 					</h2>
@@ -20,12 +20,12 @@
 			<!-- FIX IT -->
 			<div class="row card-footer bg-white mx-2">
 				<div class="col text-left">
-					<a class="text-dark" href="{% url 'user-detail' post.author.profile.id %}">
+					<a href="{% url 'user-detail' post.author.profile.id %}">
 					{{ post.author.first_name }} {{ post.author.last_name }}</a>
 					{{ post.date|date:"F d, Y" }}
 				</div>
 				<div class="col text-right">
-					<a class="text-dark" href="{% url 'post-detail' post.id %}">Подробнее</a>
+					<a href="{% url 'post-detail' post.id %}">Подробнее</a>
 				</div>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 	<div class="col-md-4">
 
 		<!-- Search Widget -->
-		<div class="card">
+		<div class="card shadow-lg">
 			<h5 class="card-header">Search</h5>
 			<div class="card-body">
 				<div class="input-group">
@@ -58,7 +58,7 @@
 		</div>
 
 		<!-- Filter Widget -->
-		<div class="card my-4">
+		<div class="card my-4 shadow-lg">
 			<h5 class="card-header">Filter</h5>
 			<div class="card-body">
 				<form method="POST">
@@ -77,37 +77,9 @@
 		</div>
 
 		<!-- Categories Widget -->
-		<div class="card my-4">
+		<div class="card my-4 shadow-lg">
 			<h5 class="card-header">Categories</h5>
 			<div class="card-body">
-				<div class="row">
-					<div class="col-lg-6">
-						<ul class="list-unstyled mb-0">
-							<li>
-								<a href="#">Web Design</a>
-							</li>
-							<li>
-								<a href="#">HTML</a>
-							</li>
-							<li>
-								<a href="#">Freebies</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-6">
-						<ul class="list-unstyled mb-0">
-							<li>
-								<a href="#">JavaScript</a>
-							</li>
-							<li>
-								<a href="#">CSS</a>
-							</li>
-							<li>
-								<a href="#">Tutorials</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
