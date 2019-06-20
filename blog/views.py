@@ -58,7 +58,7 @@ def about(request):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
-	fields = ['title', 'content']
+	fields = ['title', 'content', 'date', 'journal', 'volume', 'number']
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -67,7 +67,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
-	fields = ['title', 'content']
+	fields = ['title', 'content', 'date', 'journal', 'volume', 'number']
 	template_name = 'blog/post_update.html'
 
 	def form_valid(self, form):
@@ -75,7 +75,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 	def test_func(self):
 		post = self.get_object()
-		if self.request.user == post.author or not self.request.user.profile.access == 'standart':
+		if self.request.user == post.author or not self.request.user.profile.access == 'Пользователь':
 			return True
 		return False
 
@@ -86,6 +86,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 	def test_func(self):
 		post = self.get_object()
-		if self.request.user == post.author or not self.request.user.profile.access == 'standart':
+		if self.request.user == post.author or not self.request.user.profile.access == 'Пользователь':
 			return True
 		return False

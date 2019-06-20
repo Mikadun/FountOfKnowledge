@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin_panel/', user_views.admin_panel, name='admin-panel'),
     path('user/<pk>/delete/', user_views.UserDeleteView.as_view(), name='user-delete'),
     path('user/<pk>/', user_views.ProfileDetailView.as_view(), name='user-detail'),
+    path('tinymce/', include('tinymce.urls'))
 ]
 
 from django.conf import settings

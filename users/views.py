@@ -15,9 +15,9 @@ def sign_up(request):
         uform = UserRegisterForm(request.POST)
         pform = ProfileUpdateForm(request.POST, request.FILES)
         if uform.is_valid() and pform.is_valid():
-            uform.save()
+            user = uform.save()
+            pform.save(user)
             username = uform.cleaned_data.get('username')
-            pform.save()
             messages.success(request, f'Account created for {username}')
             return redirect('login')
     else:
@@ -33,8 +33,8 @@ def profile(request):
         pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if uform.is_valid() and pform.is_valid():
-            uform.save()
-            pform.save()
+            user = uform.save()
+            pform.save(user)
             messages.success(request, f'Account has been updated')
             return redirect('profile')
     else:
@@ -61,7 +61,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
     def test_func(self):
         user = self.get_object()
-        if self.request.user == user or self.request.user.profile.access == 'admin':
+        if self.request.user == user or self.request.user.profile.access == 'Администратор':
             return True
         return False
 

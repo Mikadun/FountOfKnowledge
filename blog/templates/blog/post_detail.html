@@ -15,7 +15,7 @@
             </div>
             <div class="container card-footer text-muted row ml-0 mr-0">
                 <div class="col pl-0">
-                    {{ object.date|date:"F d, Y" }}
+                    {{ object.date|date:"F d, Y" }} {{ object.journal }} {{ object.volume }} {{ object.number }}
                 </div>
                 <div class="col float-right text-right pr-0">
                     <a class="pr-2" href="{% url 'user-detail' object.author.profile.id %}">{{ object.author.first_name }} {{ object.author.last_name }}</a>

@@ -6,6 +6,14 @@ from PIL import Image
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	image = models.ImageField(default='default.png', upload_to='profile_pics')
+	biography = models.TextField(blank=True)
+	organization = models.CharField(max_length=150, blank=True)
+	position = models.CharField(max_length=100, blank=True)
+	degree = models.CharField(max_length=100, blank=True)
+	link = models.URLField(blank=True)
+	ORCID = models.CharField(max_length=100, blank=True)
+
+	'''
 	position = models.CharField(
 		choices=[('Студент', 'Студент'),
 				('Преподаватель', 'Преподаватель'),
@@ -15,6 +23,7 @@ class Profile(models.Model):
 		default='Другая',
 		max_length=20
 	)
+	'''
 
 	access = models.CharField(
 		choices = [('Пользователь', 'Пользователь'),

@@ -24,7 +24,7 @@
                 <div class="col text-left">
                     <a href="{% url 'user-detail' post.author.profile.id %}">
                         {{ post.author.first_name }} {{ post.author.last_name }}</a>
-                    {{ post.date|date:"F d, Y" }}
+                    {{ post.date|date:"F d, Y" }} {{ post.journal }} {{ post.volume }} {{ post.number }}
                 </div>
                 <div class="col text-right">
                     <a href="{% url 'post-detail' post.id %}">Подробнее</a>
