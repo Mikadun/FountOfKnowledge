@@ -5,10 +5,10 @@ from crispy_forms.layout import Layout
 
 
 class FilterForm(forms.Form):
-    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Введите текст'}), label='', max_length=100, required=False)
-    author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Введите текст'}), label='', max_length=100, required=False)
-    organization = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Введите текст'}), label='', max_length=100, required=False)
-    journal = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Введите текст'}), label='', max_length=100, required=False)
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Название'}), label='', max_length=100, required=False)
+    author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Автор'}), label='', max_length=100, required=False)
+    organization = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Организация'}), label='', max_length=100, required=False)
+    journal = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Журнал'}), label='', max_length=100, required=False)
 
     #def __init__(self, *args, **kwargs):
         #super(FilterForm, self).__init__(*args, **kwargs)

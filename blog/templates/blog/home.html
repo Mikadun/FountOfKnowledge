@@ -48,21 +48,27 @@
 {% block sidebar %}
     <!-- Filter Widget -->
     <div class="card shadow-lg mb-auto">
-        <h5 class="card-header">Поиск</h5>
-        <div class="card-body">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="input-group">
-                    <!--
-                    <input type="text" class="form-control" placeholder="Author name...">
-                    -->
-                    {% crispy filter.form %}
-                    <div class="input-group-btn">
-                        <button class="btn btn-secondary mb-2" type="submit">Искать</button>
+        <div class="card-header" style="min-width: 257px;" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+             aria-expanded="false" aria-controls="multiCollapseExample1">Поиск
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <!--
+                        <input type="text" class="form-control" placeholder="Author name...">
+                        -->
+                        <div class="col">
+                            {% crispy filter.form %}
+                            <div class="input-group-btn">
+                                <button class="btn btn-secondary btn-block mb-2" type="submit">Искать</button>
+                            </div>
+                        </div>
+                        <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
                     </div>
-                    <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
