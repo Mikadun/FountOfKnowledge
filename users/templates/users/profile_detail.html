@@ -7,14 +7,23 @@
 			</div>
 			<div class="media-body">
 				<h2 class="card-title">{{ object.user.first_name }} {{ object.user.last_name }}</h2>
-				<h5 class="card-text"><p>Должность: {{ object.position }}</p><p>Права доступа: {{ object.access }}</p></h5>
+				<!-- <h5 class="card-text"><p>Права доступа: {{ object.access }}</p></h5> -->
+				<p>Организация: {{ object.organization }}</p>
+				<p>Должность: {{ object.position }}</p>
+				<p>Степень: {{ object.degree }}</p>
+				<p>Профиль РИНЦ: {{ object.link }}</p>
+				<p>ORCID: {{ object.ORCID }}</p>
+				<p>О себе: {{ object.biography }}</p>
 			</div>
 		</div>
 		<div class="content">
 		</div>
-		<div class="text-center">
-			<!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
-			<a class="btn btn-danger" href="{% url 'user-delete' object.user.id %}">Delete this account</a>
-		</div>
+		{% if user == object.user %}
+			<div class="text-center">
+				<a class="btn bg-blue text-white" href="{% url 'user-detail-update' object.user.id %}">Обновить</a>
+				<!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
+				<a class="btn btn-danger" href="{% url 'user-delete' object.user.id %}">Удалить аккаунт</a>
+			</div>
+		{% endif %}
 	</div>
 {% endblock content %}

@@ -9,9 +9,9 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = HTMLField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    journal = models.CharField(blank=True, max_length=150)
-    volume = models.IntegerField(null=True)
-    number = models.IntegerField(null=True)
+    journal = models.CharField(max_length=150)
+    volume = models.IntegerField()
+    number = models.IntegerField()
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

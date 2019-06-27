@@ -27,21 +27,26 @@ def sign_up(request):
 
 
 @login_required
-def profile(request):
+def user_update_profile(request, pk):
+    if not (request.user.id == pk):
+        return HttpResponseForbidden()
+
+    profile = request.user.profile
+
     if request.method == 'POST':
         uform = UserUpdateForm(request.POST, instance=request.user)
         pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if uform.is_valid() and pform.is_valid():
-            user = uform.save()
+            user = uform.save(request.user.username)
             pform.save(user)
             messages.success(request, f'Account has been updated')
-            return redirect('profile')
+            return redirect('user-detail', profile.id)
     else:
         uform = UserUpdateForm(instance=request.user)
         pform = ProfileUpdateForm(instance=request.user.profile)
 
-    return render(request, 'users/profile.html', {'uform': uform, 'pform': pform})
+    return render(request, 'users/profile_update.html', {'uform': uform, 'pform': pform, 'profile': profile})
 
 
 @login_required

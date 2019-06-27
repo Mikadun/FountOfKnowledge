@@ -19,7 +19,14 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email']
+
+    def save(self, username, commit=True):
+        instance = super(UserUpdateForm, self).save(commit=False)
+        instance.username = username
+        if commit:
+            instance.save()
+        return instance
 
 
 class ProfileUpdateForm(forms.ModelForm):

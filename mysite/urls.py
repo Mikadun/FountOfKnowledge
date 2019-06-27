@@ -9,10 +9,10 @@ urlpatterns = [
     path('sign_up/', user_views.sign_up, name='sign_up'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('profile/', user_views.profile, name='profile'),
+    path('user/<int:pk>/update', user_views.user_update_profile, name='user-detail-update'),
     path('admin_panel/', user_views.admin_panel, name='admin-panel'),
-    path('user/<pk>/delete/', user_views.UserDeleteView.as_view(), name='user-delete'),
-    path('user/<pk>/', user_views.ProfileDetailView.as_view(), name='user-detail'),
+    path('user/<int:pk>/delete/', user_views.UserDeleteView.as_view(), name='user-delete'),
+    path('user/<int:pk>/', user_views.ProfileDetailView.as_view(), name='user-detail'),
     path('tinymce/', include('tinymce.urls'))
 ]
 
