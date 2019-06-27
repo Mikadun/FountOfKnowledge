@@ -12,7 +12,8 @@ urlpatterns = [
     path('user/<int:pk>/update', user_views.user_update_profile, name='user-detail-update'),
     path('admin_panel/', user_views.admin_panel, name='admin-panel'),
     path('user/<int:pk>/delete/', user_views.UserDeleteView.as_view(), name='user-delete'),
-    path('user/<int:pk>/', user_views.ProfileDetailView.as_view(), name='user-detail'),
+    path('user/<int:pk>/', user_views.user_detail, name='user-detail'),
+    path('user/<int:pk>/grant_add/', user_views.grant_add, name='grant_add'),
     path('tinymce/', include('tinymce.urls'))
 ]
 

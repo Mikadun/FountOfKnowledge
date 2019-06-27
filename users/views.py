@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, GrantForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.contrib.auth.models import User
@@ -74,6 +74,20 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         return success_message
 
 
-class ProfileDetailView(DetailView):
-    model = Profile
-    template_name = 'users/profile_detail.html'
+def user_detail(request, pk):
+    profile = Profile.objects.get(id__exact=pk)
+    return render(request, 'users/profile_detail.html', {'object': profile, 'grants': profile.grant_set.all()})
+
+def grant_add(request, pk):
+    profile = request.user.profile
+    if not (profile.id == pk):
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        form = GrantForm(request.POST)
+        if form.is_valid():
+            form.save(profile)
+            return redirect('user-detail', profile.id)
+    else:
+        form = GrantForm()
+    return render(request, 'users/grant_add.html', {'profile': profile, 'form': form})
