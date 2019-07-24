@@ -32,6 +32,10 @@ body {
     padding-top: 56px;
 }
 
+.sidebar {
+    float: left;
+}
+
 * {
     font-family: Roboto-Regular;
     font-size: 12pt;
