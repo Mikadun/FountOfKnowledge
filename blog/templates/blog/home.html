@@ -8,6 +8,35 @@
 </h1>
     {% endif %}
 
+<!-- Filter Widget -->
+<div class="card shadow-lg mb-auto">
+    <div class="card-header" style="min-width: 257px;" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+         aria-expanded="false" aria-controls="multiCollapseExample1">
+        Поиск
+    </div>
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <!--
+                    <input type="text" class="form-control" placeholder="Author name...">
+                    -->
+                    <div class="col">
+                        {% crispy filter.form %}
+                        <div class="input-group-btn">
+                            <button class="btn btn-secondary btn-block mb-2" type="submit">Искать</button>
+                        </div>
+                    </div>
+                    <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br />
+
     {% for post in posts %}
 <div class="card mb-4 shadow-lg pb-1">
     <div class="card-body">
@@ -46,54 +75,3 @@
 -->
 {% endblock content %}
 
-{% block sidebar %}
-<!-- Filter Widget -->
-<div class="card shadow-lg mb-auto">
-    <div class="card-header" style="min-width: 257px;" data-toggle="collapse" href="#multiCollapseExample1" role="button"
-         aria-expanded="false" aria-controls="multiCollapseExample1">
-        Поиск
-    </div>
-    <div class="collapse multi-collapse" id="multiCollapseExample1">
-        <div class="card-body">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="input-group">
-                    <!--
-                    <input type="text" class="form-control" placeholder="Author name...">
-                    -->
-                    <div class="col">
-                        {% crispy filter.form %}
-                        <div class="input-group-btn">
-                            <button class="btn btn-secondary btn-block mb-2" type="submit">Искать</button>
-                        </div>
-                    </div>
-                    <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Search Widget --
-<div class="card shadow-lg">
-    <h5 class="card-header">Search</h5>
-    <div class="card-body">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-            </span>
-        </div>
-    </div>
-</div>
--->
-<!-- Filter Widget -->
-<!-- Categories Widget
-<div class="card my-4 shadow-lg">
-    <h5 class="card-header">Categories</h5>
-    <div class="card-body">
-    </div>
-</div>
--->
-{% endblock %}
