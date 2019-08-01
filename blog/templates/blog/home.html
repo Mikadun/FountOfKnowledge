@@ -3,95 +3,98 @@
 {% crispy filter_form filter_form.helper %}
 {% block content %}
     {% if not filter.author == None %}
-        <h1 class="my-4">
-            Статьи {{ filter.author.first_name }} {{ filter.author.second_name }}
-        </h1>
+<h1 class="my-4">
+    Статьи {{ filter.author.first_name }} {{ filter.author.second_name }}
+</h1>
     {% endif %}
 
-    {% for post in posts %}
-        <div class="card mb-4 shadow-lg pb-1">
-            <div class="card-body">
-                <a class="card-title" href="{% url 'post-detail' post.id %}">
-                    <h2>
-                        {{ post.title }}
-                    </h2>
-                </a>
-                <p class="card-text">{{ post.content|truncatewords:50 }}</p>
-                <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
-            </div>
-            <!-- FIX IT -->
-            <div class="row card-footer bg-white ml-1 mr-1 pl-0 pr-0">
-                <div class="col text-left">
-                    <a href="{% url 'user-detail' post.author.profile.id %}">
-                        {{ post.author.first_name }} {{ post.author.last_name }}</a>
-                    {{ post.date|date:"F d, Y" }}.- {{ post.journal }}.- Т.{{ post.volume }}, №{{ post.number }}
+<!-- Filter Widget -->
+<div class="card shadow-lg mb-auto">
+    <div class="card-header" style="min-width: 257px;" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+         aria-expanded="false" aria-controls="multiCollapseExample1">
+        Поиск
+    </div>
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <!--
+                    <input type="text" class="form-control" placeholder="Author name...">
+                    -->
+                    <div class="col">
+                        {% crispy filter.form %}
+                        <div class="input-group-btn">
+                            <button class="btn btn-secondary btn-block mb-2" type="submit">Искать</button>
+                        </div>
+                    </div>
+                    <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
                 </div>
-                <div class="col text-right">
-                    <a href="{% url 'post-detail' post.id %}">Подробнее</a>
-                </div>
-            </div>
+            </form>
         </div>
+    </div>
+</div>
+
+<br />
+
+    {% for post in posts %}
+<div class="card mb-4 shadow-lg pb-1">
+    <div class="card-body">
+        <a class="card-title" href="{% url 'post-detail' post.id %}">
+            <h2>
+                {{ post.title }}
+            </h2>
+        </a>
+        <p class="card-text">{{ post.content|truncatewords:50 }}</p>
+        <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
+    </div>
+    <!-- FIX IT -->
+    <div class="row card-footer bg-white ml-1 mr-1 pl-0 pr-0">
+        <div class="col text-left">
+            <a href="{% url 'user-detail' post.author.profile.id %}">
+                {{ post.author.first_name }} {{ post.author.last_name }}
+            </a>
+            {{ post.date|date:"F d, Y" }} {{ post.journal }} {{ post.volume }} {{ post.number }}
+        </div>
+        <div class="col text-right">
+            <a href="{% url 'post-detail' post.id %}">Подробнее</a>
+        </div>
+    </div>
+</div>
     {% endfor %}
 
-    <!--
-    <ul class="pagination justify-content-center mb-4">
-        <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-    </ul>
-    -->
+<!--
+<ul class="pagination justify-content-center mb-4">
+    <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+    </li>
+    <li class="page-item disabled">
+        <a class="page-link" href="#">Newer &rarr;</a>
+    </li>
+</ul>
+-->
 {% endblock content %}
 
 {% block sidebar %}
-    <!-- Filter Widget -->
-    <div class="card shadow-lg mb-auto">
-        <div class="card-header" style="min-width: 257px;" data-toggle="collapse" href="#multiCollapseExample1" role="button"
-             aria-expanded="false" aria-controls="multiCollapseExample1">Поиск
-        </div>
-        <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card-body">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="input-group">
-                        <!--
-                        <input type="text" class="form-control" placeholder="Author name...">
-                        -->
-                        <div class="col">
-                            {% crispy filter.form %}
-                            <div class="input-group-btn">
-                                <button class="btn btn-secondary btn-block mb-2" type="submit">Искать</button>
-                            </div>
-                        </div>
-                        <!--<button class="btn btn-primary mb-2" type="submit">Apply</button>-->
-                    </div>
-                </form>
-            </div>
+<!-- Search Widget --
+<div class="card shadow-lg">
+    <h5 class="card-header">Search</h5>
+    <div class="card-body">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+            </span>
         </div>
     </div>
-
-    <!-- Search Widget --
-    <div class="card shadow-lg">
-        <h5 class="card-header">Search</h5>
-        <div class="card-body">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
-            </div>
-        </div>
+</div>
+-->
+<!-- Filter Widget -->
+<!-- Categories Widget
+<div class="card my-4 shadow-lg">
+    <h5 class="card-header">Categories</h5>
+    <div class="card-body">
     </div>
-    -->
-
-    <!-- Filter Widget -->
-    <!-- Categories Widget
-    <div class="card my-4 shadow-lg">
-        <h5 class="card-header">Categories</h5>
-        <div class="card-body">
-        </div>
-    </div>
-    -->
+</div>
+-->
 {% endblock %}
