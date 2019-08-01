@@ -60,7 +60,7 @@ def post_detail(request, pk=None):
 	else:
 		form = CommentForm()
 	return render(request, 'blog/post_detail.html', {
-		'object': post, 'form': form, 'comments': post.comment_set.all()
+		'object': post, 'form': form, 'comments': post.comment_set.all(), 'size': round(post.file.size / 2.0**20, 2)
 	})
 
 
