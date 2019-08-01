@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, GrantForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.contrib.auth.models import User
@@ -27,21 +27,26 @@ def sign_up(request):
 
 
 @login_required
-def profile(request):
+def user_update_profile(request, pk):
+    if not (request.user.id == pk):
+        return HttpResponseForbidden()
+
+    profile = request.user.profile
+
     if request.method == 'POST':
         uform = UserUpdateForm(request.POST, instance=request.user)
         pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if uform.is_valid() and pform.is_valid():
-            user = uform.save()
+            user = uform.save(request.user.username)
             pform.save(user)
             messages.success(request, f'Account has been updated')
-            return redirect('profile')
+            return redirect('user-detail', profile.id)
     else:
         uform = UserUpdateForm(instance=request.user)
         pform = ProfileUpdateForm(instance=request.user.profile)
 
-    return render(request, 'users/profile.html', {'uform': uform, 'pform': pform})
+    return render(request, 'users/profile_update.html', {'uform': uform, 'pform': pform, 'profile': profile})
 
 
 @login_required
@@ -69,6 +74,20 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         return success_message
 
 
-class ProfileDetailView(DetailView):
-    model = Profile
-    template_name = 'users/profile_detail.html'
+def user_detail(request, pk):
+    profile = Profile.objects.get(id__exact=pk)
+    return render(request, 'users/profile_detail.html', {'object': profile, 'grants': profile.grant_set.all()})
+
+def grant_add(request, pk):
+    profile = request.user.profile
+    if not (profile.id == pk):
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        form = GrantForm(request.POST)
+        if form.is_valid():
+            form.save(profile)
+            return redirect('user-detail', profile.id)
+    else:
+        form = GrantForm()
+    return render(request, 'users/grant_add.html', {'profile': profile, 'form': form})

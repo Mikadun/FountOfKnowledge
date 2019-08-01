@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container mt-2">
+		<div class="media mb-2">
+			<div class="profile-image-container">
+				<img class="img-thumbnail profile-image" src="{{ profile.image.url }}" alt="Profile picture">
+			</div>
+			<div class="media-body">
+				<h2 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<fieldset class="form-group">
+						<legend class="border-bottom mb-4">Обновить профиль</legend>
+						{{ uform|crispy }}
+						{{ pform|crispy }}
+					</fieldset>
+					<div class="form-group">
+						<button class="btn btn-dark" type="submit">Сохранить</button>
+						<a class="btn bg-blue text-white" href="{% url 'user-detail' user.id %}">Назад</a>
+						<a class="btn btn-danger" href="{% url 'user-delete' user.id %}">Удалить аккаунт</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

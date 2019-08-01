@@ -8,17 +8,29 @@ from users.models import Profile
 
 
 def home(request):
-	post_title = ''
+	posts = None
 	if request.method == 'POST':
 		filter_form = FilterForm(request.POST)
 		if filter_form.is_valid():
-			post_title = filter_form.cleaned_data.get('author')
-			posts = Post.objects.filter(title__contains=post_title)
+			title = filter_form.cleaned_data.get('title')
+			author = filter_form.cleaned_data.get('author')
+			organization = filter_form.cleaned_data.get('organization')
+			journal = filter_form.cleaned_data.get('journal')
+			posts = Post.objects.all()
+
+			if title.strip():
+				posts = posts.filter(title__contains=title.strip())
+			if organization.strip():
+				posts = posts.filter(organization__contains=organization.strip())
+			if journal.strip():
+				posts = posts.filter(journal__contains=journal.strip())
+			if author.strip():
+				try:
+					user = User.objects.get(username__exact=author.strip())
+					posts = posts.filter(author__exact=user)
+				except Exception:
+					posts = []
 	else:
-		filter_form = FilterForm()
-		posts = Post.objects.all()
-		author = None
-	if post_title.strip() == '':
 		filter_form = FilterForm()
 		posts = Post.objects.all()
 		author = None

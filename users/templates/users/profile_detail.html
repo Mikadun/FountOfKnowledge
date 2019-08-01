@@ -1,20 +1,45 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 	<div class="container mt-2">
-		<div class="media mb-2">
-			<div class="profile-image-container">
-				<img class="img-thumbnail profile-image" src="{{ object.image.url }}" alt="Profile picture">
+		<div class="media mb-2 row">
+			<div class="col">
+				<div class="profile-image-container">
+					<img class="img-thumbnail profile-image" src="{{ object.image.url }}" alt="Profile picture">
+				</div>
+				<div class="media-body">
+					<h2 class="card-title">{{ object.user.first_name }} {{ object.user.last_name }}</h2>
+					<!-- <h5 class="card-text"><p>Права доступа: {{ object.access }}</p></h5> -->
+					<p>Организация: {{ object.organization }}</p>
+					<p>Должность: {{ object.position }}</p>
+					<p>Степень: {{ object.degree }}</p>
+					<p>Профиль РИНЦ: {{ object.link }}</p>
+					<p>ORCID: {{ object.ORCID }}</p>
+					<p>О себе: {{ object.biography }}</p>
+				</div>
 			</div>
-			<div class="media-body">
-				<h2 class="card-title">{{ object.user.first_name }} {{ object.user.last_name }}</h2>
-				<h5 class="card-text"><p>Должность: {{ object.position }}</p><p>Права доступа: {{ object.access }}</p></h5>
+			<div class="col-4">
+				{% for grant in grants %}
+					<div class="card shadow-lg mb-2">
+						<div class="card-body">
+							<h3 class="card-title">{{ grant.name }}</h3>
+							<p>Фонд: {{ grant.fund }}</p>
+							<p>Размер: {{ grant.amount }} млн. руб</p>
+							<p>Годы: {{ grant.year_from }} - {{ grant.year_to }}</p>
+							{% if grant.link %}
+								<a href="{{ grant.link }}">Ссылка: {{ grant.link }}</a>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
-		<div class="content">
-		</div>
-		<div class="text-center">
-			<!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
-			<a class="btn btn-danger" href="{% url 'user-delete' object.user.id %}">Delete this account</a>
-		</div>
+		{% if user == object.user %}
+			<div class="text-center">
+				<a class="btn bg-blue text-white" href="{% url 'grant_add' object.id %}">Добавить грант</a>
+				<a class="btn bg-blue text-white" href="{% url 'user-detail-update' object.user.id %}">Обновить</a>
+				<!-- <button action="{% url 'blog-home' %}" class="btn btn-dark" method="POST">Posts</button> -->
+				<a class="btn btn-danger" href="{% url 'user-delete' object.user.id %}">Удалить аккаунт</a>
+			</div>
+		{% endif %}
 	</div>
 {% endblock content %}
