@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script src="https://cdn.tiny.cloud/1/5ajckg3ovoim2iyeshxnla5dbdif2o0f6xbt9ylee30w5bau/tinymce/5/tinymce.min.js"></script>
+<script>tinymce.init({selector:'textarea'});</script>
+    <!-- <h1 class="my-4">Статья №{{ object.id }}</h1> -->
+    <div class="container p-0 mb-5">
+        <div class="card mb-4 shadow-lg">
+            <div class="card-body">
+                <div class="container pl-0">
+                    <h2 class="card-title">{{ object.name }}</h2>
+                </div>
+                <div class="container pl-0">
+                    <p class="card-text">{{ object.description | safe | escape }}</p>
+                </div>
+                <div class="container pl-0">
+                    <p class="card-text">{{ object.constitutors }}</p>
+                    <p class="card-text">{{ object.date }}</p>
+                    <p class="card-text">{{ object.address }}</p>
+                    {% if object.link %}
+                        <p class="card-text">{{ object.link }}</p>
+                    {% endif %}
+                </div>
+                <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
+            </div>
+        </div>
+    </div>
+
+	{% if object.author == user or not user.profile.access == 'Пользователь' %}
+	<div class="text-center">
+		<a class="btn btn-dark text-white" href="{% url 'post-update' object.id %}">Update</a>
+		<a class="btn btn-danger text-white" href="{% url 'post-delete' object.id %}">Delete</a>
+	</div>
+	{% endif %}
+{% endblock content %}
+
+				

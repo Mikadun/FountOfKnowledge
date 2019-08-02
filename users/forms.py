@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Grant
+from dal import autocomplete
 
 
 class UserRegisterForm(UserCreationForm):
@@ -34,6 +35,9 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['image', 'organization', 'position', 'degree', 'biography', 'link', 'ORCID']
+		widgets = {
+			'organization': autocomplete.ModelSelect2(url='organization-autocomplete')
+		}
 
 	def save(self, user, commit=True):
 		instance = super(ProfileUpdateForm, self).save(commit=False)

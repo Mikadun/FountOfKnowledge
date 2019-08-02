@@ -14,7 +14,11 @@ urlpatterns = [
     path('user/<int:pk>/delete/', user_views.UserDeleteView.as_view(), name='user-delete'),
     path('user/<int:pk>/', user_views.user_detail, name='user-detail'),
     path('user/<int:pk>/grant_add/', user_views.grant_add, name='grant_add'),
-    path('tinymce/', include('tinymce.urls'))
+    path('tinymce/', include('tinymce.urls')),
+    path('organization-autocomplete', user_views.OrganizationAutocomplete.as_view(), name='organization-autocomplete'),
+    path('organization/new', user_views.OrganizationCreateView.as_view(), 'organization-create'),
+    path('organization/<int:pk>', user_views.OrganizationDetailView.as_view(), 'organization-detail'),
+
 ]
 
 from django.conf import settings

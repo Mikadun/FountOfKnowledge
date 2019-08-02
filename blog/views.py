@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from .forms import FilterForm, CommentForm
+from .forms import FilterForm, CommentForm, PostForm
 from users.models import Profile
 
 
@@ -60,13 +60,26 @@ def post_detail(request, pk=None):
 	else:
 		form = CommentForm()
 	return render(request, 'blog/post_detail.html', {
-		'object': post, 'form': form, 'comments': post.comment_set.all()
+		'object': post, 'form': form, 'comments': post.comment_set.all(), 'size': round(post.file.size / 2.0**20, 2)
 	})
 
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})
 
+
+def post_create(request):
+	if not request.user.is_authenticated:
+		return redirect('login')
+
+	if request.method == 'POST':
+		form = PostForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save(request.user)
+			return redirect('blog-home')
+	else:
+		form = PostForm()
+	return render(request, 'blog/post_form.html', { 'form': form })
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post

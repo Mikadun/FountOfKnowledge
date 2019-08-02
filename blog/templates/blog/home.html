@@ -2,6 +2,8 @@
 {% load crispy_forms_tags %}
 {% crispy filter_form filter_form.helper %}
 {% block content %}
+<script src="https://cdn.tiny.cloud/1/5ajckg3ovoim2iyeshxnla5dbdif2o0f6xbt9ylee30w5bau/tinymce/5/tinymce.min.js"></script>
+<script>tinymce.init({selector:'textarea'});</script>
     {% if not filter.author == None %}
 <h1 class="my-4">
     Статьи {{ filter.author.first_name }} {{ filter.author.second_name }}
@@ -45,7 +47,7 @@
                 {{ post.title }}
             </h2>
         </a>
-        <p class="card-text">{{ post.content|truncatewords:50 }}</p>
+        <p class="card-text">{{ post.content|truncatewords:100|safe|escape }}</p>
         <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
     </div>
     <!-- FIX IT -->
