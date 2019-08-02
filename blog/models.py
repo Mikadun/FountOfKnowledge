@@ -16,7 +16,7 @@ class Post(models.Model):
 	number = models.IntegerField()
 	date = models.IntegerField(choices=YEAR_CHOICES)
 	file = models.FileField(upload_to = 'files/', null=True, max_length=1e3)
-	
+
 	def __str__(self):
 		return self.title
 

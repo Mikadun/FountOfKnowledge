@@ -4,10 +4,11 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, GrantFor
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.contrib.auth.models import User
-from django.views.generic import DetailView, DeleteView
+from django.views.generic import CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import Profile
+from .models import Profile, Organization
+from dal import autocomplete
 
 
 def sign_up(request):
@@ -91,3 +92,24 @@ def grant_add(request, pk):
     else:
         form = GrantForm()
     return render(request, 'users/grant_add.html', {'profile': profile, 'form': form})
+
+class OrganizationAutocomplete(autocomplete.Select2QuerySetView):
+     def get_queryset(self):
+        orgs = Organization.objects.all()
+        
+        if self.q:
+            orgs = orgs.filter(name__istartswith=self.q)
+
+        return orgs
+
+class OrganizationCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Organization
+    fields = ['name', 'date', 'constitutors', 'address', 'link', 'description']
+    
+    def test_func(self):
+        if not self.request.user.profile.access == 'Пользователь':
+            return True
+        return False
+
+class OrganizationDetailView(DetailView):
+    model = Organization

@@ -91,7 +91,11 @@ footer {
     font-family: Roboto-Light;
 }
 
-
 .card .badge-primary {
     background-color: #3B378C;
+}
+
+.icon-pdf {
+    max-width: 55px;
+    max-height: 55px;
 }
