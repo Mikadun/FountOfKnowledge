@@ -6,3 +6,10 @@ Used:
 * Django Tinymce 2.8.0
 * Pillow 6.0.0
 * Bootstrap templates
+# Installation
+Python required
+* pip install django
+* pip install django-crispy-forms
+* pip install django-tinymce
+* pip install django-pillow
+* pip install django-autocomplete-light
