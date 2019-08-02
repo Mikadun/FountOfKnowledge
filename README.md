@@ -8,8 +8,8 @@ Used:
 * Bootstrap templates
 # Installation
 Python required
-pip install django
-pip install django-crispy-forms
-pip install django-tinymce
-pip install django-pillow
-pip install django-autocomplete-light
+* pip install django
+* pip install django-crispy-forms
+* pip install django-tinymce
+* pip install django-pillow
+* pip install django-autocomplete-light
