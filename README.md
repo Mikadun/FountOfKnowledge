@@ -13,3 +13,7 @@ Python required
 * pip install django-tinymce
 * pip install django-pillow
 * pip install django-autocomplete-light
+# Launch
+py manage.py makemigrations
+py manage.py migrate
+py manage.py runserver
